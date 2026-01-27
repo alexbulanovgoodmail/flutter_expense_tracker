@@ -16,7 +16,7 @@ const categoryIcons = {
   Category.others: Icons.shopping_bag,
 };
 
-final dateFormatter = DateFormat('dd.MM.yyyy', 'ru_RU');
+final dateFormatter = DateFormat('dd.MM.yyyy', 'en_US');
 final currencyFormatter = NumberFormat.currency(
   locale: 'en_US',
   symbol: '\$',
