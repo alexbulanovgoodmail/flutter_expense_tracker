@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expense_tracker/models/expense.dart';
+import 'package:flutter_expense_tracker/widgets/expenses_adder.dart';
 import 'package:flutter_expense_tracker/widgets/expenses_list.dart';
 
 class ExpensesScreen extends StatefulWidget {
@@ -31,13 +32,15 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     ),
   ];
 
+  void _addExpense(Expense expense) {}
+
   void _openAddExpenseModal() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
       builder: (ctx) {
-        return const Text('The modal!');
+        return ExpensesAdder(onAddExpense: _addExpense);
       },
     );
   }
