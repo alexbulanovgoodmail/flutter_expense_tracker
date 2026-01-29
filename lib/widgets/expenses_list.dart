@@ -22,7 +22,7 @@ class ExpensesList extends StatelessWidget {
           direction: DismissDirection.endToStart,
           background: Container(
             color: Theme.of(context).colorScheme.error,
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
