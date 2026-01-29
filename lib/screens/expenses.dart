@@ -32,7 +32,11 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     ),
   ];
 
-  void _addExpense(Expense expense) {}
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
 
   void _openAddExpenseModal() {
     showModalBottomSheet(
