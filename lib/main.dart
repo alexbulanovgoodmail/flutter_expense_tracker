@@ -7,6 +7,11 @@ var kColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.light,
 );
 
+var kColorDarkScheme = ColorScheme.fromSeed(
+  seedColor: Colors.deepPurpleAccent,
+  brightness: Brightness.dark,
+);
+
 Future<void> main() async {
   await initializeDateFormatting('en_US', null);
 
@@ -37,24 +42,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
         textTheme: TextTheme().copyWith(
-          titleLarge: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 24,
-          ),
-          titleMedium: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 16,
-          ),
-          titleSmall: TextStyle(
-            fontWeight: FontWeight.w600,
-            color: kColorScheme.onSecondaryContainer,
-            fontSize: 12,
-          ),
+          titleLarge: TextStyle(color: kColorScheme.onSecondaryContainer),
+          titleMedium: TextStyle(color: kColorScheme.onSecondaryContainer),
+          titleSmall: TextStyle(color: kColorScheme.onSecondaryContainer),
           bodyMedium: TextStyle(color: kColorScheme.onPrimaryContainer),
         ),
       ),
+      darkTheme: ThemeData.dark().copyWith(colorScheme: kColorDarkScheme),
+      themeMode: ThemeMode.system,
       home: const ExpensesScreen(),
     );
   }
