@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_expense_tracker/screens/expenses.dart';
 
@@ -16,6 +17,12 @@ Future<void> main() async {
   await initializeDateFormatting('en_US', null);
 
   runApp(const MyApp());
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((
+  //   fn,
+  // ) {
+  //   runApp(const MyApp());
+  // });
 }
 
 class MyApp extends StatelessWidget {
