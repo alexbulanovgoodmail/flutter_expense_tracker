@@ -83,7 +83,7 @@ class Chart extends StatelessWidget {
                             ? Theme.of(context).colorScheme.secondary
                             : Theme.of(
                                 context,
-                              ).colorScheme.onPrimary.withValues(alpha: 0.7),
+                              ).colorScheme.primary.withValues(alpha: 0.7),
                       ),
                     ),
                   ),

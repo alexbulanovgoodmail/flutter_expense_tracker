@@ -128,6 +128,8 @@ class _ExpensesAdderState extends State<ExpensesAdder> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        final bool isWideScreen = constraints.maxWidth >= 600;
+
         return SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
@@ -151,7 +153,7 @@ class _ExpensesAdderState extends State<ExpensesAdder> {
                     ),
 
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
                           child: TextField(
@@ -169,67 +171,96 @@ class _ExpensesAdderState extends State<ExpensesAdder> {
                           ),
                         ),
                         const SizedBox(width: 16.0),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: InkWell(
-                              onTap: _handleCalendar,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  _selectedDate == null
-                                      ? Text(
-                                          'Select Date',
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodyLarge,
-                                        )
-                                      : Text(
-                                          dateFormatter.format(_selectedDate!),
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodyLarge,
-                                        ),
-                                  const SizedBox(width: 8.0),
-                                  const Icon(Icons.calendar_month),
-                                ],
-                              ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          child: InkWell(
+                            onTap: _handleCalendar,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                _selectedDate == null
+                                    ? Text(
+                                        'Select Date',
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge,
+                                      )
+                                    : Text(
+                                        dateFormatter.format(_selectedDate!),
+                                        style: Theme.of(
+                                          context,
+                                        ).textTheme.bodyLarge,
+                                      ),
+                                const SizedBox(width: 8.0),
+                                const Icon(Icons.calendar_month),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 24.0),
-
-                    Row(
-                      children: <Widget>[
-                        DropdownButton<Category>(
-                          value: _selectedCategory,
-                          items: Category.values
-                              .map(
-                                (category) => DropdownMenuItem<Category>(
-                                  value: category,
-                                  child: Row(
-                                    children: <Widget>[
-                                      Icon(categoryIcons[category]),
-                                      const SizedBox(width: 8.0),
-                                      Text(
-                                        category.name[0]
-                                                .toUpperCase()
-                                                .toString() +
-                                            category.name.substring(1),
+                        if (isWideScreen) const SizedBox(width: 16.0),
+                        if (isWideScreen)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 0.0),
+                            child: DropdownButton<Category>(
+                              value: _selectedCategory,
+                              underline: const SizedBox.shrink(),
+                              items: Category.values
+                                  .map(
+                                    (category) => DropdownMenuItem<Category>(
+                                      value: category,
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(categoryIcons[category]),
+                                          const SizedBox(width: 8.0),
+                                          Text(
+                                            category.name[0]
+                                                    .toUpperCase()
+                                                    .toString() +
+                                                category.name.substring(1),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: _handleDropdown,
-                        ),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: _handleDropdown,
+                            ),
+                          ),
                       ],
                     ),
+
+                    const SizedBox(height: 16.0),
+
+                    if (!isWideScreen)
+                      Row(
+                        children: <Widget>[
+                          DropdownButton<Category>(
+                            value: _selectedCategory,
+                            underline: const SizedBox.shrink(),
+                            items: Category.values
+                                .map(
+                                  (category) => DropdownMenuItem<Category>(
+                                    value: category,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(categoryIcons[category]),
+                                        const SizedBox(width: 8.0),
+                                        Text(
+                                          category.name[0]
+                                                  .toUpperCase()
+                                                  .toString() +
+                                              category.name.substring(1),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: _handleDropdown,
+                          ),
+                        ],
+                      ),
 
                     const SizedBox(height: 24.0),
 
